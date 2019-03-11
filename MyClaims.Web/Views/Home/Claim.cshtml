@@ -1,0 +1,48 @@
+﻿@model MyClaims.Web.MyClaim
+
+@{
+    ViewData["Title"] = "Claim";
+}
+
+<h1>Claim</h1>
+
+<h4>MyClaim</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Claim">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ClaimId" class="control-label"></label>
+                <input asp-for="ClaimId" class="form-control" />
+                <span asp-validation-for="ClaimId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientName" class="control-label"></label>
+                <input asp-for="ClientName" class="form-control" />
+                <span asp-validation-for="ClientName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkName" class="control-label"></label>
+                <input asp-for="WorkName" class="form-control" />
+                <span asp-validation-for="WorkName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReferenceNum" class="control-label"></label>
+                <input asp-for="ReferenceNum" class="form-control" />
+                <span asp-validation-for="ReferenceNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
