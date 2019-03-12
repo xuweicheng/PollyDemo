@@ -34,31 +34,30 @@ namespace MyClaims.Web
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddSingleton<ITokenService, TokenService>();
+            //services.AddSingleton<ITokenService, TokenService>();
 
             var provider = services.BuildServiceProvider();
 
-            var authPolicy = Policy.HandleResult<string>(result => result == "401")
-                .RetryAsync(
-                retryCount: 1,
-                onRetry: (response, retryNumber, context) =>
-                {
-                    var tokenService = provider.GetService<ITokenService>();
-                    tokenService.RefreshToken();
-                    //telemetryClient.log retried
-                });
-            var policyRegistry = services.AddPolicyRegistry();
-            policyRegistry.Add("auth_policy",authPolicy);
+            //Moved to FunctionApi
+            //var authPolicy = Policy.HandleResult<string>(result => result == "401")
+            //    .RetryAsync(
+            //    retryCount: 1,
+            //    onRetry: (response, retryNumber, context) =>
+            //    {
+            //        var tokenService = provider.GetService<ITokenService>();
+            //        tokenService.RefreshToken();
+            //        //telemetryClient.log retried
+            //    });
+            //var policyRegistry = services.AddPolicyRegistry();
+            //policyRegistry.Add("auth_policy",authPolicy);
 
             services.AddHttpClient<IClaimsClient, ClaimsClient>()
                 .AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(new[] {
                     TimeSpan.FromSeconds(1),
                     TimeSpan.FromSeconds(1),
                     TimeSpan.FromSeconds(1)
-                }))
-                //.AddTransientHttpErrorPolicy(builder => builder.CircuitBreaker)
-                //.Add
-               ;
+                }));
+
             //services.AddHttpClient("CMS-Get")
             //    .AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(new[] {
             //            TimeSpan.FromSeconds(1),

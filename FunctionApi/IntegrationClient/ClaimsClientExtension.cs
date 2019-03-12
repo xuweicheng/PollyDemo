@@ -1,10 +1,11 @@
-﻿using System;
+﻿using FunctionApi.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace MyClaims.Web
+namespace FunctionApi.IntegrationClient
 {
     public partial class ClaimsClient : IClaimsClient
     {

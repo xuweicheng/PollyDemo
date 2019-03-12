@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClaimMessages", "ClaimMessa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionApi", "FunctionApi\FunctionApi.csproj", "{95CC6F7B-7891-44B0-8865-97984DFF4DD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyClaims.Web", "MyClaims.Web\MyClaims.Web.csproj", "{22BA5112-333A-4B52-B325-98C198F99718}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyClaims.Web", "MyClaims.Web\MyClaims.Web.csproj", "{22BA5112-333A-4B52-B325-98C198F99718}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CD456779-2E26-4643-9BAD-3B2762962AB4}"
+	ProjectSection(SolutionItems) = preProject
+		Readme.md = Readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

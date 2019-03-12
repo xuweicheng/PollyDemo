@@ -1,4 +1,4 @@
-﻿namespace MyClaims.Web
+﻿namespace FunctionApi.Services
 {
     public interface ITokenService
     {

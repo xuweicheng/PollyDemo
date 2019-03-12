@@ -14,13 +14,10 @@ namespace MyClaims.Web.Controllers
     public class HomeController : Controller
     {
         private readonly IClaimsClient claimsClient;
-        private readonly IPolicyRegistry<string> policyRegistry;
 
-        public HomeController(IClaimsClient claimsClient,
-            IPolicyRegistry<string> policyRegistry)
+        public HomeController(IClaimsClient claimsClient)
         {
             this.claimsClient = claimsClient;
-            this.policyRegistry = policyRegistry;
         }
         public async Task<IActionResult> Index()
         {
@@ -36,14 +33,7 @@ namespace MyClaims.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Claim(MyClaim myClaim)
         {
-            string referenceNum = "";
-
-            var authPolicy = policyRegistry.Get<IAsyncPolicy<string>>("auth_policy");
-
-            await authPolicy.ExecuteAsync(
-                 async () =>
-                    referenceNum = await claimsClient.PostAsync(myClaim)
-                );
+            string referenceNum = await claimsClient.PostAsync(myClaim);
 
             if (string.IsNullOrEmpty(referenceNum))
                 return View(myClaim);
