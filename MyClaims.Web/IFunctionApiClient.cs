@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace MyClaims.Web
 {
-    public interface IClaimsClient
+    public interface IFunctionApiClient
     {
         string BaseUrl { get; set; }
 

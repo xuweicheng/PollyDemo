@@ -51,7 +51,7 @@ namespace MyClaims.Web
             //var policyRegistry = services.AddPolicyRegistry();
             //policyRegistry.Add("auth_policy",authPolicy);
 
-            services.AddHttpClient<IClaimsClient, ClaimsClient>()
+            services.AddHttpClient<IFunctionApiClient, FunctionApiClient>()
                 .AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(new[] {
                     TimeSpan.FromSeconds(1),
                     TimeSpan.FromSeconds(1),

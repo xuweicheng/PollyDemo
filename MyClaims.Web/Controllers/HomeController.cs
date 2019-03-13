@@ -13,15 +13,15 @@ namespace MyClaims.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IClaimsClient claimsClient;
+        private readonly IFunctionApiClient functionApiClient;
 
-        public HomeController(IClaimsClient claimsClient)
+        public HomeController(IFunctionApiClient functionApiClient)
         {
-            this.claimsClient = claimsClient;
+            this.functionApiClient = functionApiClient;
         }
         public async Task<IActionResult> Index()
         {
-            var claims = await claimsClient.GetAllAsync();
+            var claims = await functionApiClient.GetAllAsync();
             return View(claims);
         }
 
@@ -33,7 +33,7 @@ namespace MyClaims.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Claim(MyClaim myClaim)
         {
-            string referenceNum = await claimsClient.PostAsync(myClaim);
+            string referenceNum = await functionApiClient.PostAsync(myClaim);
 
             if (string.IsNullOrEmpty(referenceNum))
                 return View(myClaim);

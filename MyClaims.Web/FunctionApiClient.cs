@@ -9,13 +9,13 @@ namespace MyClaims.Web
 #pragma warning disable
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "12.0.15.0 (NJsonSchema v9.13.22.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class ClaimsClient : IClaimsClient
+    public partial class FunctionApiClient : IFunctionApiClient
     {
         private string _baseUrl = "http://localhost:7071";
         private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
     
-        public ClaimsClient(System.Net.Http.HttpClient httpClient)
+        public FunctionApiClient(System.Net.Http.HttpClient httpClient)
         {
             _httpClient = httpClient; 
             _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() => 

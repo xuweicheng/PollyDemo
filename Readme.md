@@ -53,3 +53,26 @@ In **CreateClaimFunction.cs**, get the policy from policy registry, and execute.
                 referenceNum = await claimsClient.PostAsync(myClaim)
             );
 ```
+
+#### Retry in web
+**MyClaims.Web**, in **startup.cs**, wraps **HttpClient** with **WaitAndRetryAsync** policy, and injects into **FunctionApiClient**
+``` C#
+        services.AddHttpClient<IFunctionApiClient, FunctionApiClient>()
+            .AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(new[] {
+                TimeSpan.FromSeconds(1),
+                TimeSpan.FromSeconds(1),
+                TimeSpan.FromSeconds(1)
+            }));
+```
+In **HomeController**, when calling the following lines
+```C#
+...
+var claims = await functionApiClient.GetAllAsync();
+...
+string referenceNum = await functionApiClient.PostAsync(myClaim);
+...
+``` 
+Within each **FunctionApiClient** method, the **WaitAndRetryAsync** policy will trigger **HttpClient.SendAsync(...)**.
+```C#
+var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+```
